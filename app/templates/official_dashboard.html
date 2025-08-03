@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block title %}Official Dashboard{% endblock %}
+{% block content %}
+<div class="flex flex-col items-center justify-center h-full text-center">
+    <h1 class="text-4xl font-extrabold text-blue-800 mb-8">Official Dashboard</h1>
+    <p class="text-xl text-gray-600 mb-12">Select an action to perform.</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl">
+        <a href="{{ url_for('main.register_student') }}" class="flex flex-col items-center justify-center p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+            <i class="fas fa-user-plus text-5xl text-green-600 mb-4"></i>
+            <span class="text-xl font-bold text-gray-700">Register New Student</span>
+        </a>
+        
+        <a href="{{ url_for('main.record_payment') }}" class="flex flex-col items-center justify-center p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+            <i class="fas fa-credit-card text-5xl text-indigo-600 mb-4"></i>
+            <span class="text-xl font-bold text-gray-700">Record a Payment</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

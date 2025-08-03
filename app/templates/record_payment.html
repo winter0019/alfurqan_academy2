@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block title %}Record Payment{% endblock %}
+{% block content %}
+<div class="flex flex-col items-center justify-center">
+    <h1 class="text-4xl font-extrabold text-indigo-800 mb-8">Record a Payment</h1>
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <form action="{{ url_for('main.record_payment') }}" method="post" class="space-y-6">
+            <div>
+                <label for="student_reg_number" class="block text-sm font-medium text-gray-700">Student Reg Number</label>
+                <input type="text" name="student_reg_number" id="student_reg_number" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="amount_paid" class="block text-sm font-medium text-gray-700">Amount Paid</label>
+                <input type="number" name="amount_paid" id="amount_paid" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="payment_date" class="block text-sm font-medium text-gray-700">Payment Date</label>
+                <input type="date" name="payment_date" id="payment_date" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="term" class="block text-sm font-medium text-gray-700">Term</label>
+                <input type="text" name="term" id="term" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="academic_year" class="block text-sm font-medium text-gray-700">Academic Year</label>
+                <input type="text" name="academic_year" id="academic_year" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <button type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+                    <i class="fas fa-credit-card mr-2"></i> Record Payment
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

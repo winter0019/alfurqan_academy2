@@ -1,0 +1,490 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables for Colors */
+:root {
+    --primary-color: #4CAF50; /* A vibrant green for accents */
+    --primary-hover-color: #45a049;
+    --secondary-color: #2196F3; /* Blue for other actions/info */
+    --secondary-hover-color: #1976D2;
+    --text-dark: #333;
+    --text-light: #f4f4f4;
+    --background-light: #f9fafb; /* Lighter background for main content */
+    --background-dark: #1f2937; /* Darker background for header/footer */
+    --border-color: #e5e7eb;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.05);
+
+    --success-bg: #d4edda;
+    --success-text: #155724;
+    --success-border: #c3e6cb;
+
+    --error-bg: #f8d7da;
+    --error-text: #721c24;
+    --error-border: #f5c6cb;
+}
+
+/* General Body Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    display: flex; /* Flex container for sticky footer */
+    flex-direction: column; /* Stack header, main, footer */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+/* Header and Navigation */
+header {
+    background: var(--background-dark);
+    color: var(--text-light);
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 5px var(--shadow-medium);
+}
+
+header nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+/* Logo and Title Container */
+.logo-title-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between logo and title */
+}
+
+.academy-logo {
+    height: 40px; /* Adjusted height here, you can change this further */
+    width: auto;
+    border-radius: 50%; /* Optional: for round logos */
+    background-color: white; /* To ensure logo looks good on dark background */
+    padding: 5px; /* Padding inside the circle */
+}
+
+header nav h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+header nav ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 1.5rem; /* Space between nav items */
+    margin: 0;
+}
+
+header nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Main Content Area */
+main {
+    flex-grow: 1; /* Allow main content to grow and push footer down */
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+/* Forms */
+form {
+    background: #fdfdfd;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px var(--shadow-medium);
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+form input[type="text"],
+form input[type="number"], /* Added type="number" */
+form select {
+    width: calc(100% - 24px); /* Account for padding and border */
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus, /* Added type="number" */
+form select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    outline: none;
+}
+
+button {
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button:hover {
+    background: var(--primary-hover-color);
+    transform: translateY(-2px);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: separate; /* Use separate for rounded corners on cells */
+    border-spacing: 0;
+    margin-top: 25px;
+    box-shadow: 0 2px 8px var(--shadow-medium);
+    border-radius: 8px; /* Apply border radius to the table itself */
+    overflow: hidden; /* Ensures child elements don't overflow rounded corners */
+}
+
+table th, table td {
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    text-align: left;
+}
+
+table th {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    position: sticky; /* Make headers sticky for scrolling tables */
+    top: 0;
+    z-index: 1; /* Ensure header is above content */
+}
+
+/* Rounded corners for table headers */
+table th:first-child { border-top-left-radius: 8px; }
+table th:last-child { border-top-right-radius: 8px; }
+
+table tr:nth-child(even) {
+    background-color: #f6f8fa;
+}
+
+table tr:hover {
+    background-color: #eef2f5;
+}
+
+/* Flash Messages */
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.flashes li {
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.flashes .success {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    border-color: var(--success-border);
+}
+
+.flashes .error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border-color: var(--error-border);
+}
+
+/* Fee Status Badges */
+.fee-status { /* Renamed from .status-paid, .status-defaulter, etc. for consistency */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block; /* Allows padding and margin to work */
+}
+
+.fee-status.paid {
+    background-color: #e6ffed; /* Light green */
+    color: #0c6b2c; /* Dark green */
+}
+
+.fee-status.defaulter {
+    background-color: #ffebe6; /* Light red/orange */
+    color: #c93b1d; /* Dark red */
+}
+
+.fee-status.n\/a { /* For N/A status, escaped '/' */
+    background-color: #f0f0f0;
+    color: #555;
+}
+
+
+/* Links */
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-hover-color);
+    text-decoration: underline;
+}
+
+/* Specific button-like links (e.g., View Details, Record New Payment) */
+table td a,
+.button-like { /* Renamed from .button to .button-like to avoid conflict with actual <button> tag */
+    display: inline-block;
+    padding: 6px 10px; /* Adjusted padding for a more compact look */
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Ensure no underline */
+}
+
+.button-like { /* Specific padding for standalone buttons */
+    padding: 10px 18px;
+    margin-bottom: 20px;
+    background-color: var(--primary-color); /* Use primary color for main action button */
+}
+
+table td a:hover {
+    background-color: var(--secondary-hover-color);
+    text-decoration: none;
+}
+
+.button-like:hover {
+    background: var(--primary-hover-color);
+    transform: translateY(-2px);
+    text-decoration: none; /* Keep underline off on hover */
+}
+
+
+/* Filter Form Specific Styles */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 15px; /* Space between filter elements */
+    align-items: flex-end; /* Align labels and inputs at the bottom */
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-medium);
+    margin-bottom: 30px;
+}
+
+.filter-form > div { /* Wrapper for label+select/input for better alignment */
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allow items to take equal space */
+    min-width: 180px; /* Minimum width before wrapping */
+}
+
+.filter-form label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.filter-form select,
+.filter-form input[type="text"] { /* Apply to search input too */
+    margin-bottom: 0; /* Remove default margin */
+    width: 100%;
+}
+
+/* Student Details Card */
+.student-details-card {
+    background: #fdfdfd;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px var(--shadow-medium);
+}
+
+.student-details-card p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.student-details-card h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: 1.7rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    background: var(--background-dark);
+    color: var(--text-light);
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 5px var(--shadow-medium);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column; /* Stack logo and nav links */
+        gap: 1rem;
+    }
+
+    /* Adjust logo-title-container for small screens */
+    .logo-title-container {
+        flex-direction: column; /* Stack logo and title */
+        gap: 5px;
+    }
+
+    header nav h1 {
+        margin-bottom: 15px;
+        font-size: 1.5rem; /* Smaller title on mobile */
+    }
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    main {
+        margin: 20px auto;
+        padding: 20px 15px;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    form input[type="text"],
+    form input[type="number"], /* Added type="number" */
+    form select {
+        width: calc(100% - 20px);
+    }
+
+    table, table thead, table tbody, table th, table td, table tr {
+        display: block; /* Make table elements behave like blocks */
+    }
+
+    table thead tr {
+        position: absolute;
+        top: -9999px; /* Hide table header visually */
+        left: -9999px;
+    }
+
+    table tr {
+        border: 1px solid var(--border-color);
+        margin-bottom: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px var(--shadow-medium);
+    }
+
+    table td {
+        border: none; /* Remove individual cell borders */
+        border-bottom: 1px solid var(--border-color);
+        position: relative;
+        padding-left: 50%; /* Make space for the pseudo-element label */
+        text-align: right;
+    }
+
+    table td:last-child {
+        border-bottom: none;
+    }
+
+    table td:before {
+        content: attr(data-label); /* Use data-label attribute for dynamic labels */
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 10px;
+        font-weight: 600;
+        text-align: left;
+        color: var(--primary-color);
+        font-size: 0.9em;
+    }
+    table td:first-of-type { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+    table tr:last-of-type td:last-child { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+
+    .filter-form {
+        flex-direction: column; /* Stack filters vertically */
+        align-items: stretch;
+    }
+    .filter-form > div {
+        min-width: unset; /* Remove min-width for stacking */
+        width: 100%;
+    }
+    .filter-form button {
+        width: 100%;
+    }
+}

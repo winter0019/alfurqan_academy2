@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Alfurqan Academy Mai'adua Student Management System</h2>
+    <p>Use the navigation above to register new students, view student lists, or search for student details.</p>
+
+    <h3>Quick Links:</h3>
+    <ul>
+        <li><a href="{{ url_for('register_student') }}">Register a New Student</a></li>
+        <li><a href="{{ url_for('student_list', status='all') }}">View All Students</a></li>
+        <li><a href="{{ url_for('student_list', status='Paid') }}">View Paid Students</a></li>
+        <li><a href="{{ url_for('student_list', status='Defaulter') }}">View Defaulter Students</a></li>
+    </ul>
+
+    <h3>Recently Registered Students (Limited View):</h3>
+    {% if students %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Reg. No.</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Term</th>
+                    <th>Fee Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %} {# Display last 5 registered students #}
+                <tr>
+                    <td data-label="Reg. No.">{{ student['reg_number'] }}</td>
+                    <td data-label="Name">{{ student['name'] }}</td>
+                    <td data-label="Class">{{ student['class'] }}</td>
+                    <td data-label="Term">{{ student['term'] }}</td>
+                    <td data-label="Fee Status"><span class="fee-status {{ student['fee_status'] | lower }}">{{ student['fee_status'] }}</span></td>
+                    <td data-label="Actions">
+                        <a href="{{ url_for('student_details', reg_number=student['reg_number']) }}">View Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><a href="{{ url_for('student_list') }}">View all students...</a></p>
+    {% else %}
+        <p>No students registered yet. <a href="{{ url_for('register_student') }}">Register one!</a></p>
+    {% endif %}
+{% endblock %}

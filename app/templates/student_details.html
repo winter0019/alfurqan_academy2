@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Student Details: {{ student.name }}</h2>
+
+    <div class="student-details-card"> {# Changed class to student-details-card as per new CSS #}
+        <h3>Personal Information</h3>
+        <p><strong>Registration Number:</strong> {{ student.reg_number }}</p>
+        <p><strong>Full Name:</strong> {{ student.name }}</p>
+        <p><strong>Date of Birth:</strong> {{ student.dob }}</p>
+        <p><strong>Gender:</strong> {{ student.gender }}</p>
+        <p><strong>Address:</strong> {{ student.address }}</p>
+        <p><strong>Phone:</strong> {{ student.phone }}</p>
+        <p><strong>Email:</strong> {{ student.email }}</p>
+    </div>
+    
+    <div class="student-details-card"> {# Changed class to student-details-card #}
+        <h3>Academic Information</h3>
+        <p><strong>Class:</strong> {{ student.class }}</p>
+        <p><strong>Admission Term:</strong> {{ student.term }}</p>
+        <p><strong>Admission Academic Year:</strong> {{ student.academic_year }}</p>
+        <p><strong>Admission Date:</strong> {{ student.admission_date }}</p>
+        {# Changed status class to fee-status for consistency with style.css #}
+        <p><strong>Current Fee Status ({{ current_term }} {{ current_academic_year }}):</strong> <span class="fee-status {{ fee_status | lower }}">{{ fee_status }}</span></p>
+    </div>
+
+    <h3>Fee Breakdown by Term & Year</h3>
+    {% if fee_breakdown %}
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Term & Year</th>
+                        <th>Expected Fee (₦)</th>
+                        <th>Amount Paid (₦)</th>
+                        <th>Outstanding (₦)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for period, data in fee_breakdown.items() %}
+                    <tr>
+                        <td data-label="Term & Year">{{ period }}</td>
+                        <td data-label="Expected Fee">₦{{ data.expected | float | format_currency }}</td>
+                        <td data-label="Amount Paid">₦{{ data.paid | float | format_currency }}</td>
+                        <td data-label="Outstanding" class="{% if data.outstanding > 0 %}fee-status defaulter{% else %}fee-status paid{% endif %}"> {# Updated class for consistent styling #}
+                            ₦{{ data.outstanding | float | format_currency }}
+                        </td>
+                        <td data-label="Status">
+                            {% if data.expected > 0 %}
+                                {% if data.outstanding <= 0 %}
+                                    <span class="fee-status paid">Paid</span> {# Updated class for consistent styling #}
+                                {% else %}
+                                    <span class="fee-status defaulter">Defaulter</span> {# Updated class for consistent styling #}
+                                {% endif %}
+                            {% else %}
+                                <span class="fee-status n/a">N/A</span> {# Updated class for consistent styling #}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No fee breakdown information available for this student.</p>
+    {% endif %}
+
+    <h3>Payment History</h3>
+    {% if payments %}
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Payment Date</th>
+                        <th>Term</th>
+                        <th>Academic Year</th>
+                        <th>Amount Paid (₦)</th>
+                        <th>Recorded By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in payments %}
+                    <tr>
+                        <td data-label="Payment Date">{{ payment.payment_date }}</td>
+                        <td data-label="Term">{{ payment.term }}</td>
+                        <td data-label="Academic Year">{{ payment.academic_year }}</td>
+                        <td data-label="Amount Paid">₦{{ payment.amount_paid | float | format_currency }}</td>
+                        <td data-label="Recorded By">{{ payment.recorded_by }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No payment history for this student yet.</p>
+    {% endif %}
+
+    <div class="actions">
+        {# Changed class from 'button' to 'button-like' as per new CSS for links that look like buttons #}
+        <a href="{{ url_for('make_payment', reg_number=student.reg_number) }}" class="button-like">Record New Payment</a>
+        {# You can add an edit student button here later if needed #}
+    </div>
+{% endblock %}
